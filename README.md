@@ -85,5 +85,12 @@ spec:
           securityContext:
             allowPrivilegeEscalation: false
             readOnlyRootFilesystem: true
-            runAsNonRoot: true
+            capabilities:
+              drop: ["ALL"]
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 65532         # <-- distroless "nonroot"
+        runAsGroup: 65532        # <-- distroless "nonroot"
+        seccompProfile:
+          type: RuntimeDefault
 ```
